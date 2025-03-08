@@ -29,9 +29,7 @@ public class departmentService {
 
     @Transactional
     public departmentModel createDepartment(departmentModel department) {
-        Optional<departmentModel> existingDepartment = departmentRepo.findById(department.getDepartmentId());
-
-        if (existingDepartment.isPresent()) {
+        if (departmentRepo.existsById(department.getDepartmentId())) {
             throw new RuntimeException("Department ID already exists! Choose a unique ID.");
         }
 

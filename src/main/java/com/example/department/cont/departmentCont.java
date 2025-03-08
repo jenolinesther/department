@@ -36,7 +36,7 @@ public class departmentCont {
     public ResponseEntity<?> addDepartment(@RequestBody departmentModel department) {
         try {
             departmentModel savedDept = departmentService.createDepartment(department);
-            return ResponseEntity.ok(savedDept);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedDept);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
