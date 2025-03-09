@@ -1,7 +1,7 @@
 package com.example.department.model;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "department")
@@ -11,55 +11,55 @@ import java.time.LocalDateTime;
 public class departmentModel {
     
     @Id
-    private int departmentId;
+    private int department_id;
 	private String name;
     private String code;   
-    private int collegeId;   
-    private String contactEmail;   
-    private String phoneNumber;   
-    private boolean isActive;   
+    private int college_id;   
+    private String contact_email;   
+    private String phone_number;   
+    private boolean is_active;   
     
     @Column(updatable = false)
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Timestamp created_at;
+    private Timestamp updated_at;
     
     @PrePersist
     protected void onCreate() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
+        if (this.created_at == null) {
+        	this.created_at = new Timestamp(System.currentTimeMillis());
         }
-        this.updatedAt = LocalDateTime.now();
+        this.updated_at = new Timestamp(System.currentTimeMillis());
     }
 
     @PreUpdate
     protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
+    	this.updated_at = new Timestamp(System.currentTimeMillis());
     }
     
     public departmentModel() {
 		super();
 	}
     
-    public departmentModel(int departmentId, String name, String code, int collegeId, String contactEmail,
-			String phoneNumber, boolean isActive, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public departmentModel(int department_id, String name, String code, int college_id, String contact_email,
+			String phone_number, boolean is_active, Timestamp created_at, Timestamp updated_at) {
 		super();
-		this.departmentId = departmentId;
+		this.department_id = department_id;
 		this.name = name;
 		this.code = code;
-		this.collegeId = collegeId;
-		this.contactEmail = contactEmail;
-		this.phoneNumber = phoneNumber;
-		this.isActive = isActive;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+		this.college_id = college_id;
+		this.contact_email = contact_email;
+		this.phone_number = phone_number;
+		this.is_active = is_active;
+		this.created_at = created_at;
+		this.updated_at = updated_at;
 	}
 
-	public int getDepartmentId() {
-		return departmentId;
+    public int getDepartment_id() {
+		return department_id;
 	}
 
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartment_id(int department_id) {
+		this.department_id = department_id;
 	}
 
 	public String getName() {
@@ -78,51 +78,51 @@ public class departmentModel {
 		this.code = code;
 	}
 
-	public int getCollegeId() {
-		return collegeId;
+	public int getCollege_id() {
+		return college_id;
 	}
 
-	public void setCollegeId(int collegeId) {
-		this.collegeId = collegeId;
+	public void setCollege_id(int college_id) {
+		this.college_id = college_id;
 	}
 
-	public String getContactEmail() {
-		return contactEmail;
+	public String getContact_email() {
+		return contact_email;
 	}
 
-	public void setContactEmail(String contactEmail) {
-		this.contactEmail = contactEmail;
+	public void setContact_email(String contact_email) {
+		this.contact_email = contact_email;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhone_number() {
+		return phone_number;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 
-	public boolean isActive() {
-		return isActive;
+	public boolean isIs_active() {
+		return is_active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setIs_active(boolean is_active) {
+		this.is_active = is_active;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	public Timestamp getCreated_at() {
+		return created_at;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
+	public void setCreated_at(Timestamp created_at) {
+		this.created_at = created_at;
 	}
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
+	public Timestamp getUpdated_at() {
+		return updated_at;
 	}
 
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setUpdated_at(Timestamp updated_at) {
+		this.updated_at = updated_at;
 	}
 }

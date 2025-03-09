@@ -7,9 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.department.model.departmentModel;
 import com.example.department.repo.departmentRepo;
 
-import jakarta.persistence.EntityExistsException;
-
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +27,7 @@ public class departmentService {
 
     @Transactional
     public departmentModel createDepartment(departmentModel department) {
-        if (departmentRepo.existsById(department.getDepartmentId())) {
+        if (departmentRepo.existsById(department.getDepartment_id())) {
             throw new RuntimeException("Department ID already exists! Choose a unique ID.");
         }
 
@@ -41,11 +39,11 @@ public class departmentService {
         return departmentRepo.findById(id).map(department -> {
             department.setName(updatedDepartment.getName());
             department.setCode(updatedDepartment.getCode());
-            department.setCollegeId(updatedDepartment.getCollegeId());
-            department.setContactEmail(updatedDepartment.getContactEmail());
-            department.setPhoneNumber(updatedDepartment.getPhoneNumber());
-            department.setActive(updatedDepartment.isActive());
-            department.setUpdatedAt(LocalDateTime.now());
+            department.setCollege_id(updatedDepartment.getCollege_id());
+            department.setContact_email(updatedDepartment.getContact_email());
+            department.setPhone_number(updatedDepartment.getPhone_number());
+            department.setIs_active(updatedDepartment.isIs_active());
+            department.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             return departmentRepo.save(department);
         }).orElseThrow(() -> new RuntimeException("Department not found"));
     }

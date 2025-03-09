@@ -44,13 +44,13 @@ public class departmentCont {
 
     @PutMapping("/update")
     public ResponseEntity<departmentModel> updateDepartment(@RequestBody departmentModel department) {
-        return departmentRepo.findById(department.getDepartmentId()).map(existingDept -> {
+        return departmentRepo.findById(department.getDepartment_id()).map(existingDept -> {
             existingDept.setName(department.getName());
             existingDept.setCode(department.getCode());
-            existingDept.setCollegeId(department.getCollegeId());
-            existingDept.setContactEmail(department.getContactEmail());
-            existingDept.setPhoneNumber(department.getPhoneNumber());
-            existingDept.setActive(department.isActive());
+            existingDept.setCollege_id(department.getCollege_id());
+            existingDept.setContact_email(department.getContact_email());
+            existingDept.setPhone_number(department.getPhone_number());
+            existingDept.setIs_active(department.isIs_active());
 
             departmentModel updatedDept = departmentRepo.save(existingDept);
             return ResponseEntity.ok(updatedDept);
